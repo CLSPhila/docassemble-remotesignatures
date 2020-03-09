@@ -7,6 +7,18 @@ code: |
   else:
     role = 'applicant'
 ---
+metadata:
+  title: |
+    Remote Signatures
+  short title: |
+    Remote Signatures
+  description: |
+    Send a document to another person for their signature.
+  authors: 
+    - name: Nate Vogel
+    - organization: Community Legal Services
+  revision_date: 2020-03-09 
+---
 mandatory: True
 role: 
   - staff
