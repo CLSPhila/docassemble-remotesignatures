@@ -1,0 +1,25 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "5d6534eb5256c8f5c4706af038be1fc86321803e88e3a32f75cbd4e78891957c"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.7"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "docassemble-remotesignatures": {
+            "editable": true,
+            "path": "."
+        }
+    },
+    "develop": {}
+}

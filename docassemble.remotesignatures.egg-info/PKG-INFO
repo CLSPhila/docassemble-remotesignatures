@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: docassemble.remotesignatures
+Version: 0.0.1
+Summary: A docassemble extension.
+Home-page: https://docassemble.org
+Author: Nate Vogel
+Author-email: nvogel@clsphila.org
+License: The MIT License (MIT)
+Description: # docassemble.remotesignatures
+        
+        A docassemble extension.
+        
+        ## Author
+        
+        Nate Vogel, nvogel@clsphila.org
+        
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown

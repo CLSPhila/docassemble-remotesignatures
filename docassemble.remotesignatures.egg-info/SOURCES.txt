@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+docassemble/__init__.py
+docassemble.remotesignatures.egg-info/PKG-INFO
+docassemble.remotesignatures.egg-info/SOURCES.txt
+docassemble.remotesignatures.egg-info/dependency_links.txt
+docassemble.remotesignatures.egg-info/namespace_packages.txt
+docassemble.remotesignatures.egg-info/not-zip-safe
+docassemble.remotesignatures.egg-info/top_level.txt
+docassemble/remotesignatures/__init__.py
+docassemble/remotesignatures/data/questions/uploadSendAndSign.yml
+docassemble/remotesignatures/data/sources/README.md
+docassemble/remotesignatures/data/static/README.md
+docassemble/remotesignatures/data/templates/README.md
