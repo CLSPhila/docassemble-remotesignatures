@@ -1,0 +1,106 @@
+---
+default role: applicant
+code: |
+  multi_user = True
+  if user_logged_in():
+    role = 'staff'
+  else:
+    role = 'applicant'
+---
+mandatory: True
+role: 
+  - staff
+  - applicant
+question: |
+  Here is the signed document.
+  
+subquestion: |
+  % if role == 'applicant':
+  
+  You may want to save this for your own records.
+  
+  Please email this document back to ${ return_email }.
+  
+  % endif
+attachment:
+  name: Signed Document
+  filename: signed_document
+  docx template file: 
+    code: |
+      document_to_sign
+---
+# Gets triggered when the next question to be asked in the interview
+# requires a role that the current user doesn't have.
+event: role_event
+question: Waiting...
+subquestion: | 
+  Waiting for the other person ...
+  
+  If you are trying to send a document to someone for signing, you need to log 
+  in.
+  
+  % if 'applicant' in role_needed: 
+  Here's the link again: [link](${ interview_url() })
+  % endif
+buttons: 
+  - Refresh: refresh
+---
+need: applicant_notified
+role: applicant
+question: |
+  Sign your name
+subquestion: |
+  You are adding your signature to this document:
+  
+  (click to download, if it appears blank)
+  
+  ${ unsigned_document }
+signature: signature
+---
+role: staff
+question: |
+  Please upload the document you wish to have signed.
+subquestion: |
+  ## Instructions
+  
+  Use this tool to upload a document, send it to your client, and have 
+  your client sign it and send it back to you. 
+  
+  1. Upload the document here. You must use a document that has the "{{signature}}" text in it. And it must be a **.docx** file.
+  2. This site will give you a link to share with your client.
+  3. Send that link to your client. 
+  4. Your client will click the link and be asked to sign the document.
+  5. Your client will be able to email the signed document. 
+  6. You will also see the signed document by continuing to refresh this site.
+fields:
+  - Document: document_to_sign
+    datatype: file
+---
+role: staff
+question: |
+  Please send the applicant this link:
+subquestion: |
+  [link](${ interview_url() })
+  
+  Also, please enter the address you would like the applicant to return the signed document to.
+fields: 
+  - Email: return_email
+    #default: ${user_info().email}
+    #a bug? DA will attempt to read user_info for non-staff roles.
+continue button field: applicant_notified
+---
+attachment:
+  name: Unsigned Document
+  filename: unsigned_document
+  variable name: unsigned_document
+  fields: 
+     - signature: "[[Signature goes here]]"
+  docx template file: 
+    code: |
+      document_to_sign
+  # staff uploads doc
+  # staff sees link to interview
+  # applicant sees signature block
+  # applicant sees thank you
+  # staff sees signed attachment.
+  
