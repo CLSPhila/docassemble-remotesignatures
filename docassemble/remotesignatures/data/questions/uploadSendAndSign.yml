@@ -52,7 +52,7 @@ subquestion: |
   in.
   
   % if 'applicant' in role_needed: 
-  Here's the link again: [link](${ interview_url() })
+  Here's the link again. Right-click to copy: [link](${ interview_url() })
   % endif
 buttons: 
   - Refresh: refresh
@@ -92,14 +92,17 @@ fields:
 ---
 role: staff
 question: |
-  Please send the applicant this link:
+  Please send the client this link
 subquestion: |
   Right-click to copy this [link](${ interview_url() }).
   
   Paste this link into a text message or email, and send it to your client. 
 
-  Also, please enter the address you would like the applicant to return the signed document to. 
-  (This will not automatically email anything. This will only inform the applicant where you would like them to email the signed document.)
+  Please enter the address you would like the client to return the signed document to. 
+  
+  (This will not automatically email anything. This will only inform the client where you would like them to email the signed document.)
+
+  Finally, click Continue to wait for the client's signature.
 fields: 
   - Email: return_email
 continue button field: applicant_notified
