@@ -62,11 +62,13 @@ role: applicant
 question: |
   Sign your name
 subquestion: |
-  You are adding your signature to this document:
+  You are adding your signature to this document.
   
-  (click to download, if it appears blank)
+  This white box may appear blank. Click it to download the document and review it before signing in the white box at the bottom of this screen.
   
   ${ unsigned_document }
+
+  ** Sign below: **
 signature: signature
 ---
 role: staff
@@ -92,13 +94,14 @@ role: staff
 question: |
   Please send the applicant this link:
 subquestion: |
-  [link](${ interview_url() })
+  Right-click to copy this [link](${ interview_url() }).
   
-  Also, please enter the address you would like the applicant to return the signed document to.
+  Paste this link into a text message or email, and send it to your client. 
+
+  Also, please enter the address you would like the applicant to return the signed document to. 
+  (This will not automatically email anything. This will only inform the applicant where you would like them to email the signed document.)
 fields: 
   - Email: return_email
-    #default: ${user_info().email}
-    #a bug? DA will attempt to read user_info for non-staff roles.
 continue button field: applicant_notified
 ---
 attachment:
@@ -110,9 +113,4 @@ attachment:
   docx template file: 
     code: |
       document_to_sign
-  # staff uploads doc
-  # staff sees link to interview
-  # applicant sees signature block
-  # applicant sees thank you
-  # staff sees signed attachment.
   
