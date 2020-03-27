@@ -64,9 +64,9 @@ question: |
 subquestion: |
   You are adding your signature to this document.
   
-  This white box may appear blank. Click it to download the document and review it before signing in the white box at the bottom of this screen.
+
   
-  ${ unsigned_document }
+  [Click here to download and review before you sign below](${ unsigned_docment.url_for() })
 
   ** Sign below: **
 signature: signature
