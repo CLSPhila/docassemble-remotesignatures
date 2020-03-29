@@ -66,7 +66,7 @@ subquestion: |
   
 
   
-  [Click here to download and review before you sign below](${ unsigned_docment.url_for() })
+  [Click here to download and review before you sign below](${ unsigned_document.url_for() })
 
   ** Sign below: **
 signature: signature
