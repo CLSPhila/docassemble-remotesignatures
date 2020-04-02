@@ -116,6 +116,7 @@ attachment:
   variable name: unsigned_document
   fields: 
      - signature: "[[Signature goes here]]"
+     - signature_date: "${ today() }"
   docx template file: 
     code: |
       document_to_sign
