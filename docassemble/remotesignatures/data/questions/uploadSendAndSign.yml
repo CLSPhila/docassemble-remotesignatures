@@ -90,6 +90,9 @@ fields:
   - Document: document_to_sign
     datatype: file
 ---
+code: |
+  signature_date = today()
+---
 role: staff
 question: |
   Please send the client this link
