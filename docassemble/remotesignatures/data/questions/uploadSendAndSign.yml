@@ -80,19 +80,28 @@ subquestion: |
   Use this tool to upload a document, send it to your client, and have 
   your client sign it and send it back to you. 
   
-  1. Upload the document here. You must use a document that has the "{{signature}}" text in it. And it must be a **.docx** file.
-  2. This site will give you a link to share with your client.
-  3. Send that link to your client. 
-  4. Your client will click the link and be asked to sign the document.
-  5. Your client will be able to email the signed document. 
-  6. You will also see the signed document by continuing to refresh this site.
+  This page is where you start a new signing process. If you are looking for a process you have already started, visit [My Interviews](https://docassemble.clsphila.org/interviews)
+  
+  1. Enter a title for this interview, such as "Retainer for Joe Smith". This title will show up in the "My Interviews" page, so you can see which interview is which.
+  2. Upload the document here. You must use a document that has the "{{signature}}" text in it. And it must be a **.docx** file.
+  3. This site will give you a link to share with your client.
+  4. Send that link to your client. 
+  5. Your client will click the link and be asked to sign the document.
+  6. Your client will be able to email the signed document. 
+  7. You will also see the signed document by continuing to refresh this site.
 fields:
+  - Title: title_for_interview
   - Document: document_to_sign
     datatype: file
 ---
 code: |
   signature_date = today()
 ---
+code: |
+  title_set = True
+  set_parts(subtitle=title_for_interview)
+---
+need: title_set
 role: staff
 question: |
   Please send the client this link
@@ -120,4 +129,4 @@ attachment:
   docx template file: 
     code: |
       document_to_sign
-  
+ 
