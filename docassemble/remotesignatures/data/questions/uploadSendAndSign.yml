@@ -17,7 +17,18 @@ metadata:
   authors: 
     - name: Nate Vogel
     - organization: Community Legal Services
-  revision_date: 2020-03-09 
+  revision_date: 2020-03-09
+---
+mandatory: |
+  defined('signature') and defined('return_email') and not user_logged_in()
+code: |
+  signature_date
+  signed_document
+  send_email(
+    to=return_email,
+    template=signed_document_email,
+    attachments=signed_document
+  )
 ---
 mandatory: True
 role: 
@@ -31,15 +42,14 @@ subquestion: |
   
   You may want to save this for your own records.
   
-  Please email this document back to ${ return_email }.
+  The document has been sent to ${ return_email }.
+  
+  You should still call or email your CLS advocate to confirm they received the document.
+  
+  Thank you!
   
   % endif
-attachment:
-  name: Signed Document
-  filename: signed_document
-  docx template file: 
-    code: |
-      document_to_sign
+attachment code: signed_document
 ---
 # Gets triggered when the next question to be asked in the interview
 # requires a role that the current user doesn't have.
@@ -60,13 +70,11 @@ buttons:
 need: applicant_notified
 role: applicant
 question: |
-  Sign your name
-subquestion: |
-  You are adding your signature to this document.
-  
+  Please review this document before signing your name
+subquestion: | 
+  [Click here to download and review the document before you sign below.](${ unsigned_document.url_for() })
 
-  
-  [Click here to download and review before you sign below](${ unsigned_document.url_for() })
+  If you do not wish to sign, please simply close your browser. 
 
   ** Sign below: **
 signature: signature
@@ -83,11 +91,12 @@ subquestion: |
   This page is where you start a new signing process. If you are looking for a process you have already started, visit [My Interviews](https://docassemble.clsphila.org/interviews)
   
   1. Enter a title for this interview, such as "Retainer for Joe Smith". This title will show up in the "My Interviews" page, so you can see which interview is which.
-  2. Upload the document here. You must use a document that has the "{{signature}}" text in it. And it must be a **.docx** file.
+  2. Write the email address where the signed document should be returned.
+  2. Upload the document. You must use a document that has the "{{signature}}" text in it. And it must be a **.docx** file.
   3. This site will give you a link to share with your client.
   4. Send that link to your client. 
   5. Your client will click the link and be asked to sign the document.
-  6. Your client will be able to email the signed document. 
+  6. The document will automatically be emailed back to the address you entered.
   7. You will also see the signed document by continuing to refresh this site.
 fields:
   - Title: title_for_interview
@@ -112,7 +121,7 @@ subquestion: |
 
   Please enter the address you would like the client to return the signed document to. 
   
-  (This will not automatically email anything. This will only inform the client where you would like them to email the signed document.)
+  The document will automatically be emailed to that email address once the client signs. 
 
   Finally, click Continue to wait for the client's signature.
 fields: 
@@ -129,4 +138,17 @@ attachment:
   docx template file: 
     code: |
       document_to_sign
- 
+---
+attachment: 
+  name: Signed Document
+  filename: signed_document
+  variable name: signed_document
+  docx template file: 
+    code: |
+      document_to_sign
+---
+template: signed_document_email
+subject: |
+  Signed document: ${ title_for_interview }
+content: | 
+  Here is the signed document from the docassemble interview, ${ title_for_interview }.
