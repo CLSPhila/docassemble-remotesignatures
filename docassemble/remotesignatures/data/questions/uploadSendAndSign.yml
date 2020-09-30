@@ -27,7 +27,7 @@ code: |
   send_email(
     to=return_email,
     template=signed_document_email,
-    attachments=signed_document
+    attachments=[signed_document.pdf, signed_document.docx]
   )
 ---
 mandatory: True
